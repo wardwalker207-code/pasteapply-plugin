@@ -1,45 +1,56 @@
-# PasteApply — Cursor / Grok Bot plugin
+# PasteApply
 
-Honest resume and cover-letter tailor for agents. Free generate returns a truncated teaser; humans unlock full files via Stripe.
+**Honest resume & cover-letter tailor for job-apply agents.**
 
-- **Product:** https://pasteapply.com  
-- **Agent docs:** https://pasteapply.com/agents.md  
-- **Honesty / fact-lock:** https://pasteapply.com/honesty  
-- **Remote MCP:** https://pasteapply.com/mcp  
-- **Official MCP Registry:** `com.pasteapply/mcp`
+Install this plugin → your agent gets PasteApply MCP + a skill that refuses to invent employers, dates, or skills. Free preview for the human; they unlock downloads when they want the file.
 
-## Install
+| | |
+| --- | --- |
+| Product | https://pasteapply.com |
+| MCP | https://pasteapply.com/mcp |
+| Agent docs | https://pasteapply.com/agents.md |
+| Honesty | https://pasteapply.com/honesty |
+| Registry | `com.pasteapply/mcp` |
 
-### From this repo (local / marketplace git)
-Install the plugin from this repository in Cursor / Grok Bot marketplace, or clone and load as a local plugin.
+## Why install
 
-### Or connect MCP only
-Add to your MCP config:
+Raw LLMs invent careers. PasteApply only rearranges what’s already true, returns a **teaser** for free, and makes the **human** pay Stripe for the full letter/resume/files. That’s the product — and the trust model.
+
+## 2-minute first run
+
+1. Install this plugin from the Cursor / Grok Bot marketplace (or clone locally).
+2. In a new chat, ask: *“Tailor my resume for this job with PasteApply”* and paste a real posting + resume (or say *use the sample*).
+3. Agent calls MCP `generate` → shows you the teaser + coverage/proof.
+4. When you want the file: agent calls `unlock_link` and gives you the Checkout URL ($5 Export default · $3/mo · $10 Pro).
+5. After you pay, agent confirms and continues the apply flow.
+
+**Hard rules for agents:** never invent facts; never complete Stripe as you.
+
+## MCP only (no plugin UI)
 
 ```json
 {
   "mcpServers": {
     "pasteapply": {
+      "type": "http",
       "url": "https://pasteapply.com/mcp"
     }
   }
 }
 ```
 
-No API key required for `status` / `generate` / `unlock_link`.
+Tools: `status` · `generate` · `unlock_link` · `confirm_payment` · `get_generation`  
+No API key for those.
 
-## What it does
-- Bundles remote Streamable HTTP MCP at `https://pasteapply.com/mcp`
-- Ships the **PasteApply honest tailor** skill (generate → teaser → human Checkout → confirm)
-- Pricing for humans: **$3/mo** unlock · **$5 Export** (default ask) · **$10 Pro**
+## Skill
 
-## Agent loop
-1. `generate` with real job + resume  
-2. Show human the free teaser + coverage/proof  
-3. `unlock_link` → hand Checkout URL to human  
-4. `confirm_payment` / poll `get_generation` after pay  
+`skills/pasteapply-honest-tailor` — use whenever a job-apply bot needs a tailored resume or cover letter.
 
-Never invent facts. Never complete Stripe as the user.
+## Pricing (humans)
+
+- Generate / teaser: **free**
+- **$3/mo** unlock · **$5 Export** (default ask) · **$10 Pro**
 
 ## License
+
 MIT
