@@ -1,0 +1,29 @@
+{
+  "name": "pasteapply",
+  "displayName": "PasteApply",
+  "version": "1.0.0",
+  "description": "Honest resume/cover tailor for agents. Free generate teaser; human unlocks full files via Stripe. Streamable HTTP MCP.",
+  "author": {
+    "name": "Ward Walker / PasteApply",
+    "email": "support@pasteapply.com"
+  },
+  "homepage": "https://pasteapply.com",
+  "repository": "https://github.com/wardwalker207/pasteapply-plugin",
+  "license": "MIT",
+  "keywords": [
+    "pasteapply",
+    "resume",
+    "cover-letter",
+    "mcp",
+    "job-apply",
+    "agents"
+  ],
+  "category": "productivity",
+  "tags": [
+    "resume",
+    "mcp",
+    "recruiting"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./mcp.json"
+}
